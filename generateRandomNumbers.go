@@ -3,22 +3,26 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
-func generateRandomNumbers() []string {
+func generateRandomNumbers() string {
 	// Seed the random number generator with the current time
 	rand.Seed(time.Now().UnixNano())
 
 	// Create a slice to store the random numbers as strings
-	randomNumbers := make([]string, 5)
+	var randomNumbers []string
 
 	// Generate 5 random numbers and store them in the slice
 	for i := 0; i < 5; i++ {
-		randomNumbers[i] = fmt.Sprintf("%d", rand.Intn(10))
+		randomNumbers = append(randomNumbers, fmt.Sprintf("%d", rand.Intn(10)))
 	}
 
-	return randomNumbers
+	// Join the strings into a single string
+	result := strings.Join(randomNumbers, "")
+
+	return result
 }
 
 func main() {
