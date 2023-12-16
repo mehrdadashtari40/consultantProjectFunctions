@@ -2,21 +2,23 @@ package main
 
 import (
 	"testing"
+	"unicode"
 )
 
-func TestGenerateRandomNumbers(t *testing.T) {
-	// Run the function to generate random numbers
-	randomNumbers := generateRandomNumbers()
+// TestGenerateRandNum tests if GenerateRandNum function returns a string of digits with the correct length
+func TestGenerateRandNum(t *testing.T) {
+	length := 10 // Example length for testing
+	randStr := GenerateRandNum(length)
 
-	// Check if the length is 5
-	if len(randomNumbers) != 5 {
-		t.Errorf("Expected length 5, but got %d", len(randomNumbers))
+	// Check the length of the returned string
+	if len(randStr) != length {
+		t.Errorf("Expected string of length %d, got %d", length, len(randStr))
 	}
 
-	// Check if all characters are numbers between 0 and 9
-	for _, char := range randomNumbers {
-		if char < '0' || char > '9' {
-			t.Errorf("Character %s is not a number between 0 and 9", string(char))
+	// Check that all characters in the string are digits
+	for _, char := range randStr {
+		if !unicode.IsDigit(char) {
+			t.Errorf("Expected only digits in string, found non-digit: %c", char)
 		}
 	}
 }

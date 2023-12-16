@@ -7,15 +7,15 @@ import (
 	"time"
 )
 
-func generateRandomNumbers() string {
+func GenerateRandNum(length int) string {
 	// Seed the random number generator with the current time
 	rand.Seed(time.Now().UnixNano())
 
 	// Create a slice to store the random numbers as strings
 	var randomNumbers []string
 
-	// Generate 5 random numbers and store them in the slice
-	for i := 0; i < 5; i++ {
+	// Generate random digits and store them in the slice
+	for i := 0; i < length; i++ {
 		randomNumbers = append(randomNumbers, fmt.Sprintf("%d", rand.Intn(10)))
 	}
 
@@ -27,7 +27,7 @@ func generateRandomNumbers() string {
 
 func main() {
 	// Call the function to generate random numbers
-	randomNumbers := generateRandomNumbers()
+	randomNumbers := GenerateRandNum(5)
 
 	// Print the generated random numbers
 	fmt.Println("Generated Random Numbers:", randomNumbers)
